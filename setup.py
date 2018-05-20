@@ -5,7 +5,7 @@ setup(
     url="https://github.com/carminacodre/ModelQuantization",
     author="Carmina Codre",
     author_email="carminacodre@gmail.com",
-    packages=['quantization','utils'],
+    packages=['quantization'],
     install_requires=['keras', 'tensorflow'],
     version='0.1',
     license='MIT',
