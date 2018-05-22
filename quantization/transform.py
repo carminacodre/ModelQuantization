@@ -1,9 +1,10 @@
+import os
 import tensorflow as tf
 from tensorflow.python.framework import graph_io
 from tensorflow.tools.graph_transforms import TransformGraph
 
 
-def transform_graph(path_to_model, save_to, inputs, outputs, transforms):
+def transform_graph(path_to_model, save_dir, file_name, inputs, outputs, transforms):
     graph = tf.Graph()
     with graph.as_default():
         graph_def = tf.GraphDef()
@@ -17,5 +18,9 @@ def transform_graph(path_to_model, save_to, inputs, outputs, transforms):
                                                    outputs=outputs,
                                                    transforms=transforms)
 
-            graph_io.write_graph(graph_or_graph_def=transformed_graph_def, name=save_to, as_text=False,
-                                 logdir=".")
+            graph_io.write_graph(graph_or_graph_def=transformed_graph_def, name=file_name, as_text=False,
+                                 logdir=save_dir)
+            print("Model after transforms"
+                  + str(transforms) +
+                  " has been save to "
+                  + str(os.path.join(save_dir,file_name)))

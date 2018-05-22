@@ -1,3 +1,4 @@
+import os
 import tensorflow as tf
 from keras import backend as K
 from tensorflow.python.framework import graph_util
@@ -13,7 +14,7 @@ def summarize_graph(path_to_model):
             tf.import_graph_def(graph_def, name='')
             [print(n.name) for n in tf.get_default_graph().as_graph_def().node]
 
-def save_keras_model_to_pb(file_path, model, nr_outputs = 1, output_node_prefix= "output_node"):
+def save_keras_model_to_pb(save_dir, file_name, model, nr_outputs = 1, output_node_prefix= "output_node"):
 
     pred = [None] * nr_outputs
     pred_node_names = [None] * nr_outputs
@@ -26,5 +27,6 @@ def save_keras_model_to_pb(file_path, model, nr_outputs = 1, output_node_prefix=
     constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph.as_graph_def(), pred_node_names)
 
     #write the graph to ouput
-    graph_io.write_graph(graph_or_graph_def=constant_graph, name= file_path, logdir=".", as_text=False)
-    print("Saved the keras model to " + file_path)
+    graph_io.write_graph(graph_or_graph_def=constant_graph, name= file_name, logdir=save_dir, as_text=False)
+    print("Saved the keras model to " +
+          str(os.path.join(save_dir,file_name)))
