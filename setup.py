@@ -6,7 +6,7 @@ setup(
     author="Carmina Codre",
     author_email="carminacodre@gmail.com",
     packages=['quantization'],
-    install_requires=['keras', 'tensorflow'],
+    install_requires=['keras', 'tensorflow>=1.7.0'],
     version='0.1',
     license='MIT',
     description='Model quantization using tensorflow',

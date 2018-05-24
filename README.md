@@ -22,6 +22,13 @@ Note that the module is written in python 3.6.5
 Additionally, it requires tensorflow and keras, but these
 are installed together with the module.
 
+Pay attention that the tensorlow version should be at least 1.7.
+This can be checked with:
+
+`
+pip freeze
+`
+
 Aditionally, a requirements.txt is provided with the list of libraries used 
 and needed.
 
