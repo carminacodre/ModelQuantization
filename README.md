@@ -165,6 +165,8 @@ transform_graph(path_to_model="models/ssd_inception_v2_coco.pb",
 In this module you can find the utility function which saves a Keras model
 to a protobuf file.
 
+Note that tensorflow backend must be used for Keras.
+
 ```
 save_keras_model_to_pb(save_dir, file_name, model, nr_outputs = 1, output_node_prefix= "output_node")
 ```
