@@ -19,7 +19,7 @@ pip install git+https://github.com/carminacodre/ModelQuantization
 
 Note that the module is written in python 3.6.5
 
-It additionally requires tensorflow and keras, but these
+Additionally, it requires tensorflow and keras, but these
 are installed together with the module.
 
 Aditionally, a requirements.txt is provided with the list of libraries used 
@@ -61,8 +61,8 @@ optimizing_for_deployment_trans
 ```
 
 This prepares a model for deployment on a server or mobile device.
-These transforms removes nodes not used during inference,
-shrinks constant expressions and optimizes batch normalization. 
+These transforms remove nodes not used during inference,
+shrink constant expressions and optimize batch normalization. 
 
 ```
 fix_missing_kernel_errors_trans
@@ -76,9 +76,11 @@ Such an error is `No OpKernel was registered to support Op errors`
 optimize_quantize_weights_trans
 ```
 
-This is a lit of transformations which adds to the optimizing_for_deployment_trans
+This is a list of transformations which adds to the optimizing_for_deployment_trans
 the weight quantization. Weight quantization is a mechanism of saving weights by using their range
 and offset and reduces thus the memory needed.
+
+The size of the module will be reduce. 
 
 The three lists of operations listed above use as input the shape
 "1,299,299,3".
@@ -100,7 +102,7 @@ Example:
 resized_trans = get_optimizing_for_deployment_for_shape('"1,300,300,3"')
 ```
 
-The above will return the following list:
+The call above will return the following list:
 ```python
 ['strip_unused_nodes(type=float, shape="1,300,300,3")', 'remove_nodes(op=Identity, op=CheckNumerics)', 'fold_constants(ignore_errors=true)', 'fold_batch_norms', 'fold_old_batch_norms']
 ```
@@ -121,7 +123,7 @@ The parameters needed are:
 * `file_name` file name of the new model after the transformations are applied
 * `inputs` list of input tensors
 * `outputs` list of output tensors
-* `transforms` list of transforms to be applied. Note that the order is relevant
+* `transforms` list of transforms to be applied. Note that the order is relevant.
 
 Example of transforming a model with predefined transforms:
 ```
@@ -154,7 +156,7 @@ transform_graph(path_to_model="models/ssd_inception_v2_coco.pb",
 ### quantization.utils module
 
 In this module you can find the utility function which saves a Keras model
-to a ProtoBuf file.
+to a protobuf file.
 
 ```
 save_keras_model_to_pb(save_dir, file_name, model, nr_outputs = 1, output_node_prefix= "output_node")
